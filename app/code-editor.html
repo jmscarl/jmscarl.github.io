@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jmscarl Beta</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="shortcut icon" href="assets/logo.png" type="image/x-icon">
+  </head>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+}
+
+#nav-bar{
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.navbar{
+  background-image: linear-gradient(to right, #a517ba, #5f1782);
+  padding: 0 !important;
+}
+
+.navbar-nav li{
+  padding: 0 10px;
+}
+
+.navbar-nav li a{
+  color: #fff !important;
+  font-weight: 600;
+  float: right;
+  text-align: left;
+}
+
+.navbar-brand{
+  color: #fff;
+}
+
+.navbar-toggler{
+  outline: none !important;
+}
+
+#banner{
+  background-image: linear-gradient(to right, #a517ba, #5f1782);
+  color: #fff;
+  padding-top: 5%;
+}
+
+.promo-title{
+  font-size: 40px;
+  font-weight: 600;
+  margin-top: 100px
+}
+
+#services{
+  padding: 80px 0;
+}
+
+.service-img{
+  width: 100px;
+  margin-top: 20px;
+}
+
+.services{
+  padding: 30px;
+}
+
+.services h4{
+  padding: 5px;
+  margin-top: 25px;
+  text-transform: uppercase;
+}
+
+.title::before{
+  content: '';
+  background: #7b1798;
+  height: 5px;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  transform: translateY(63px);
+}
+
+.title::after{
+  content: '';
+  background: #7b1798;
+  height: 10px;
+  width: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 40px;
+  display: block;
+  transform: translateY(8px);
+}
+
+.code-editor{
+  width: 90vw;
+  height: 90vh;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  background-color: #fff;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+h1{
+  font: 600 1.2rem;
+  margin: 1rem 0;
+  color: #fff;
+}
+
+.code{
+  padding: 1rem;
+  background-image: linear-gradient(to right, #a517ba, #5f1782);
+  display: grid;
+  overflow-y: auto;
+  border-radius: 0 1rem 1rem 0;
+  grid-template-rows: repeat(3,1fr);
+}
+
+.code textarea{
+  width: 100%;
+  height: calc(100% - 4rem);
+  font-family: 'Consolas', sans-serif;
+  padding: 1rem;
+  font-size: 1.1rem;
+  resize: vertical;
+}
+
+.code textarea::-webkit-scrollbar {
+  width: .4rem;
+}
+
+.code textarea::-webkit-scrollbar-thumb {
+  background-color: deeppink;
+  border-radius: .4rem;
+}
+
+#result{
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: #fff;
+}
+
+  </style>
+  <body>
+    <section id="nav-bar">
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">jmscarl</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#services">Service</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contactus.html">Contact</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </section>
+
+      <div class="code-editor">
+        <div class="code">
+          <div class="html-code">
+            <h1 class="fs-3">HTML</h1>
+                <textarea></textarea> 
+          </div>
+          <div class="css-code">
+            <h1 class="fs-3">CSS</h1>
+                <textarea></textarea> 
+          </div>
+          <div class="js-code">
+            <h1 class="fs-3">JS</h1>
+                <textarea></textarea> 
+          </div>
+        </div>
+        <iframe id="result"></iframe>
+      </div>
+
+      <script>
+        const html_code = document.querySelector('.html-code textarea');
+        const css_code = document.querySelector('.css-code textarea');
+        const js_code = document.querySelector('.js-code textarea');
+        const result = document.querySelector('#result');
+
+        function run(){
+          localStorage.setItem('html_code', html_code.value);
+          localStorage.setItem('css_code', css_code.value);
+          localStorage.setItem('js_code', js_code.value);
+          result.contentDocument.body.innerHTML = `<style>${localStorage.css_code}</style>` + localStorage.html_code;
+          result.contentWindow.eval(localStorage.js_code);
+        }
+
+        html_code.onkeyup = ()=> run();
+        css_code.onkeyup = ()=> run();
+        js_code.onkeyup = ()=> run();
+
+        html_code = localStorage.html_code;
+        css_code = localStorage.css_code;
+        js_code = localStorage.js_code;
+
+      </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>
